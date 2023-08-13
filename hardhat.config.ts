@@ -1,9 +1,11 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.18",
+    version: "0.8.19",
     settings: {
       optimizer: {
         enabled: true,
@@ -23,13 +25,20 @@ const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   networks: {
     hardhat: {},
-    // polygon_mumbai: {
-    //   url: process.env.NODE_URL_TESTNET_POLYGON_MUMBAI,
-    //   accounts: [
-    //     process.env.PRIVATE_KEY_LENDER_TESTNET_POLYGON_MUMBAI!,
-    //     process.env.PRIVATE_KEY_RENTER_TESTNET_POLYGON_MUMBAI!
-    //   ],
-    // },
+    goerli: {
+        url: process.env.GOERLI_RPC_URL!,
+        chainId: 5,
+        accounts: [
+            process.env.PRIVATE_KEY!,
+          ],
+    },
+    mumbai: {
+        url: process.env.MUMBAI_RPC_URL!,
+        chainId: 80001,
+        accounts: [
+            process.env.PRIVATE_KEY!,
+          ],
+    },
   }
 };
 
